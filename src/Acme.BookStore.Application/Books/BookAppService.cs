@@ -24,6 +24,35 @@ namespace Acme.BookStore.Books
         {
 
         }
+
+        public override Task<BookDto> CreateAsync(CreateUpdateBookDto input)
+        {
+            int a = 10;
+
+            return base.CreateAsync(input);
+        }
+
+        public override Task<PagedResultDto<BookDto>> GetListAsync(PagedAndSortedResultRequestDto input)
+        {
+
+
+            return base.GetListAsync(input);
+        }
+
+        public override Task<BookDto> UpdateAsync(Guid id, CreateUpdateBookDto input)
+        {
+
+
+            return base.UpdateAsync(id, input);
+        }
+
+       
+        
+        public int GetData(int x)
+        {
+
+            return 12;
+        }
     }
     
     
