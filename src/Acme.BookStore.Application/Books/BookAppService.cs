@@ -58,7 +58,7 @@ namespace Acme.BookStore.Books
 
 
         [ActionName("AddBook"), HttpPost]
-        public async Task <BookDto> AddBookAsync(BookDto bookDto)
+        public async Task <BookDto> AddBook(BookDto bookDto)
         {
 
             ///var customerDto = await base.CreateAsync(input); // customer
