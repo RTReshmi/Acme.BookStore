@@ -83,8 +83,24 @@ namespace Acme.BookStore.Books
         public async Task<BookDto>GetBook (string name)
         {
             //get data from Db
-           var selectedBook= await repository.WithDetailsAsync(x => x.Name == name);
-            //var _bookDto = ObjectMapper.Map<Book, BookDto>(selectedBook);
+            try
+            {
+
+                var selectedBook = await repository.SingleAsync(x => x.Name == name);
+                var _bookDto = ObjectMapper.Map<Book, BookDto>(selectedBook);
+
+                return _bookDto; 
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            return null;
+
+
+
+            
 
 
 
