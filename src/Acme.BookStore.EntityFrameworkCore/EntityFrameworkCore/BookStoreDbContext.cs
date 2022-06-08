@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Books;
+using Acme.BookStore.Students;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -26,7 +27,7 @@ public class BookStoreDbContext :
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
     public DbSet<Book> Books { get; set; }
-
+    public DbSet<Student> Students { get; set; }
     #region Entities from the modules
 
     /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
@@ -80,6 +81,11 @@ public class BookStoreDbContext :
         builder.Entity<Book>(b =>
         {
             
+            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
+        });
+        builder.Entity<Student>(b =>
+        {
+
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
         });
     }

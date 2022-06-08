@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Acme.BookStore.Students;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,6 @@ namespace Acme.BookStore.Books
 {
     public class BookStoreApplicationAutoMapperProfile: Profile
     {
-        public BookStoreApplicationAutoMapperProfile()
-        {
-            CreateMap<Book, BookDto>().ReverseMap();
-            CreateMap<CreateUpdateBookDto, Book>().ReverseMap();
-        }
+        
     }
 }
