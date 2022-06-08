@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Books.Interface;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,11 @@ namespace Acme.BookStore.Books
             CreateUpdateBookDto>, //Used to create/update a book
         IBookAppService //implement the IBookAppService
     {
+        private readonly IRepository<Book, Guid> repository;
         public BookAppService(IRepository<Book, Guid> repository)
             : base(repository)
         {
-
+            this.repository = repository;
         }
 
         public override Task<BookDto> CreateAsync(CreateUpdateBookDto input)
@@ -52,6 +54,30 @@ namespace Acme.BookStore.Books
         {
 
             return 12;
+        }
+
+
+        [ActionName("AddBook"), HttpPost]
+        public async Task <BookDto> AddBookAsync(BookDto bookDto)
+        {
+
+            ///var customerDto = await base.CreateAsync(input); // customer
+
+            //var newCustomer = ObjectMapper.Map<CreateUpdateCustomerDto, Customer>(input);
+            //var customer = await _customerRepository.InsertAsync(newCustomer, true);
+
+
+            var bookEntity = ObjectMapper.Map<BookDto, Book>(bookDto);
+
+
+            await repository.InsertAsync(bookEntity);
+            var _bookDto = ObjectMapper.Map<Book, BookDto>(bookEntity);
+
+            return _bookDto;
+
+
+
+
         }
     }
     

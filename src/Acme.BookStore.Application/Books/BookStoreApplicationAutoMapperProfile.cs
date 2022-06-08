@@ -11,8 +11,8 @@ namespace Acme.BookStore.Books
     {
         public BookStoreApplicationAutoMapperProfile()
         {
-            CreateMap<Book, BookDto>();
-            CreateMap<CreateUpdateBookDto, Book>();
+            CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<CreateUpdateBookDto, Book>().ReverseMap();
         }
     }
 }
