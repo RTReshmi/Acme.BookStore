@@ -23,9 +23,6 @@ namespace Acme.BookStore.Students
         {
         }
 
-        public Task<PagedResultDto<StudentDto>> GetListAsync(PagedAndSortedResultRequestDto input)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }
