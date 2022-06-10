@@ -1,4 +1,5 @@
-﻿using Acme.BookStore.Teachers.Interface;
+﻿using Acme.BookStore.Departments;
+using Acme.BookStore.Teachers.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +21,39 @@ namespace Acme.BookStore.Teachers
             ITeacherAppService
     {
         IRepository<Teacher, Guid> repository;
-        public TeacherAppService(IRepository<Teacher, Guid> repository) : base(repository)
+        IRepository<Department, Guid> deptRepository;
+        public TeacherAppService(IRepository<Teacher, Guid> repository,
+              IRepository<Department, Guid> deptRepository) : base(repository)
         {
             this.repository = repository;
+            this.deptRepository = deptRepository;
         }
 
         public override Task<PagedResultDto<TeacherDto>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
             return base.GetListAsync(input);
         }
-        public List<TeacherDto>GetTeachersList()
-        {
-            repository.GetListAsync(repository.)
+        public async Task<List<Teacher>> GetTeachersListAsync() 
+        { 
+
+
+           var techerList = await repository.GetListAsync();
+
+            var deptList= await deptRepository.GetListAsync();
+
+            techerList.ForEach(teacher => {
+
+                if (teacher.DepartmentId!=null)
+                {
+
+                   var dept= deptList.Single(x=>x.Id==teacher.DepartmentId);
+                    teacher.department = dept;
+                }
+            
+            });
+
+
+            return techerList;
         }
     }
 }
