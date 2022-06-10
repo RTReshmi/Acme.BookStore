@@ -1,7 +1,9 @@
 ﻿using Acme.BookStore.Books;
+using Acme.BookStore.Departments;
 using Acme.BookStore.Employees;
 using Acme.BookStore.Salaries;
 using Acme.BookStore.Students;
+using Acme.BookStore.Teachers;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -33,6 +35,8 @@ public class BookStoreDbContext :
 
     public DbSet<Employee>Employees { get; set; }
     public DbSet<Salary> Salaries { get; set; }
+    public DbSet<Teacher> Teachers { get; set; }
+    public DbSet<Department> Departments { get; set; }
 
     #region Entities from the modules
 
@@ -104,5 +108,11 @@ public class BookStoreDbContext :
 
             b.Property(x => x.EmployeeName).IsRequired().HasMaxLength(128);
         });
+        var teacher = builder.Entity<Teacher>();
+       
+        teacher.HasOne(x => x.department)
+            .WithOne(x => x.teacher)
+            .HasForeignKey<Teacher>(x => x.DepartmentId);
     }
 }
+

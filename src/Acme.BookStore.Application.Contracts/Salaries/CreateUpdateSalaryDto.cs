@@ -7,8 +7,8 @@ namespace Acme.BookStore.Salaries
 {
    public class CreateUpdateSalaryDto
     {
-        [Required]
-        public Guid EmployeeId { get; set; }
+       
+        public Guid ?EmployeeId { get; set; }
         [Required]
         [StringLength(128)]
         public string EmployeeName { get; set; }

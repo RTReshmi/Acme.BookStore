@@ -1,4 +1,5 @@
 ﻿using Acme.BookStore.Employees.Interface;
+using Acme.BookStore.Salaries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,27 @@ namespace Acme.BookStore.Employees
             CreateUpdateEmployeeDto>, //Used to create/update a book
             IEmployeeAppService //implement the IBookAppService
     {
-        public EmployeeAppService(IRepository<Employee, Guid> repository) : base(repository)
+        private readonly IRepository<Employee, Guid> employeerepository;
+        private readonly IRepository<Salary, Guid> _salaryrepository;
+        public EmployeeAppService(IRepository<Employee, Guid> employeerepository) : base(employeerepository)
         {
+           this. employeerepository = employeerepository;
+            //_salaryrepository = salaryrepository;
+
+
+        }
+        public void AddEmployeeAndSalary(SalaryAndEmployee obj)
+        {
+            var employeeentity= ObjectMapper.Map<EmployeeDto, Employee>(obj.EmployeeDto);
+
+        }
+
+
+        public class SalaryAndEmployee
+        {
+          public EmployeeDto EmployeeDto { get; set; }
+          public SalaryDto SalaryDto { get; set; }
+
         }
 
         
