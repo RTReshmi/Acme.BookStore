@@ -38,6 +38,7 @@ namespace Acme.BookStore.Teachers
 
 
            var techerList = await repository.GetListAsync();
+             
 
             var deptList= await deptRepository.GetListAsync();
 
