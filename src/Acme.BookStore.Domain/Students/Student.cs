@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acme.BookStore.Marks;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +14,7 @@ namespace Acme.BookStore.Students
         public int Standard{get; set;}
         public int ContactNumber{get; set;}
         public string Email{get; set;}
+        
+        public virtual ICollection<Mark>? StudentMarks { get; set; } = new List<Mark>();
     }
 }

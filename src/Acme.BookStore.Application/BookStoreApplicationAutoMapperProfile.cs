@@ -1,6 +1,8 @@
-﻿using Acme.BookStore.Books;
+﻿using Acme.BookStore.Authors;
+using Acme.BookStore.Books;
 using Acme.BookStore.Departments;
 using Acme.BookStore.Employees;
+using Acme.BookStore.Marks;
 using Acme.BookStore.Salaries;
 using Acme.BookStore.Students;
 using Acme.BookStore.Teachers;
@@ -30,6 +32,10 @@ public class BookStoreApplicationAutoMapperProfile : Profile
             CreateMap<CreateUpdateTeacherDto, Teacher>().ReverseMap();
             CreateMap<Department, DepartmentDto>().ReverseMap();
             CreateMap<CreateUpdateDepartmentDto, Department>().ReverseMap();
+            CreateMap<Mark,MarkDto>().ReverseMap();
+            CreateMap<CreateUpdateMarkDto, Mark>().ReverseMap();
+        CreateMap<Author, AuthorDto>().ReverseMap();
+        CreateMap<CreateUpdateAuthorDto, Author>().ReverseMap();
 
 
 

@@ -1,6 +1,9 @@
-﻿using Acme.BookStore.Books;
+﻿using Acme.BookStore.Authors;
+using Acme.BookStore.Books;
+using Acme.BookStore.Books_Authors;
 using Acme.BookStore.Departments;
 using Acme.BookStore.Employees;
+using Acme.BookStore.Marks;
 using Acme.BookStore.Salaries;
 using Acme.BookStore.Students;
 using Acme.BookStore.Teachers;
@@ -37,6 +40,11 @@ public class BookStoreDbContext :
     public DbSet<Salary> Salaries { get; set; }
     public DbSet<Teacher> Teachers { get; set; }
     public DbSet<Department> Departments { get; set; }
+    public DbSet<Mark> Marks { get; set; }
+    public DbSet<Author> Authors { get; set; }
+    public DbSet<Book_Author> Book_Authors { get; set; }
+
+
 
     #region Entities from the modules
 
@@ -108,11 +116,35 @@ public class BookStoreDbContext :
 
             b.Property(x => x.EmployeeName).IsRequired().HasMaxLength(128);
         });
+
+
+        //one to one
         var teacher = builder.Entity<Teacher>();
        
         teacher.HasOne(x => x.department)
             .WithOne(x => x.teacher)
             .HasForeignKey<Teacher>(x => x.DepartmentId);
+
+        //one to many
+
+
+        var studentMark = builder.Entity<Mark>();
+        studentMark.HasOne(x => x.Student)
+            .WithMany(x => x.StudentMarks)
+            .HasForeignKey(x => x.StudentId);
+
+        //many to many
+
+        var book_author = builder.Entity<Book_Author>();
+
+        book_author.HasOne(x => x.Book)
+            .WithMany(x => x.Book_Authors)
+            .HasForeignKey(x => x.BookId);
+
+        book_author.HasOne(x => x.Author)
+            .WithMany(x => x.Book_Authors)
+            .HasForeignKey(x => x.AuthorId);
+
     }
 }
 
