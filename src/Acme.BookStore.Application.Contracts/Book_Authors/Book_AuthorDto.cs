@@ -7,8 +7,8 @@ namespace Acme.BookStore.Book_Authors
 {
     public class Book_AuthorDto : AuditedEntityDto<Guid>
     {
-        public Guid BookId { get; set; }
-        public Guid AuthorId { get; set; }
+        public Guid ?BookId { get; set; }
+        public Guid ?AuthorId { get; set; }
         
     }
 }

@@ -8,9 +8,9 @@ namespace Acme.BookStore.Book_Authors
     public class CreateUpdateBook_AuthorDto
     {
         [Required]
-        public Guid BookId { get; set; }
+        public Guid ?BookId { get; set; }
         [Required]
-        public Guid AuthorId { get; set; }
+        public Guid ?AuthorId { get; set; }
 
     }
 }

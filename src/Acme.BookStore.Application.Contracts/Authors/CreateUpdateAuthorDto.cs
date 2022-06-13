@@ -9,7 +9,7 @@ namespace Acme.BookStore.Authors
     {
         
         [Required]
-        public string Name { get; set; }
-        public string PenName { get; set; }
+        public string ?Name { get; set; }
+        public string ?PenName { get; set; }
     }
 }

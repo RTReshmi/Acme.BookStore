@@ -10,8 +10,8 @@ namespace Acme.BookStore.Authors
 {
     public class Author:AuditedAggregateRoot<Guid>
     {
-        public string Name { get; set; }
-        public string PenName { get; set; }
-        public ICollection<Book_Author> Book_Authors { get; set; }
+        public string ?Name { get; set; }
+        public string ?PenName { get; set; }
+        public ICollection<Book_Author> ?Book_Authors { get; set; }
     }
 }

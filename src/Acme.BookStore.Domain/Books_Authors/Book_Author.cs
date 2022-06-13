@@ -11,9 +11,9 @@ namespace Acme.BookStore.Books_Authors
 {
     public class Book_Author : AuditedAggregateRoot<Guid>
     {
-        public Guid BookId { get; set; }
-        public Guid AuthorId { get; set; }
-        public Book Book { get; set; }
-        public Author Author { get; set; }
+        public Guid ?BookId { get; set; }
+        public Guid ?AuthorId { get; set; }
+        public Book ?Book { get; set; }
+        public Author ?Author { get; set; }
     }
 }
